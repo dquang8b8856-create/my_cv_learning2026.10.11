@@ -63,3 +63,50 @@ int main()
 
     return 0;
 }
+#include <iostream>
+using namespace std;
+
+class MyClass
+{
+public:
+    void fun(int arr[], int n)
+    {
+        int min = 0;
+
+        // 找最小值的下标
+        for (int i = 1; i < n; i++)
+        {
+            if (arr[i] < arr[min])
+            {
+                min = i;
+            }
+        }
+
+        // 交换最小值和最后一个元素
+        int temp = arr[min];
+        arr[min] = arr[n - 1];
+        arr[n - 1] = temp;
+    }
+};
+
+int main()
+{
+    int arr[6] = { 5, 34, 1, 2, 56, 4 };
+
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "交换前：";
+    for (int i = 0;i < n;i++)
+    {
+        cout << arr[i] << "  ";
+    }
+    cout << endl;
+    MyClass obj;
+    obj.fun(arr, n);
+    cout << "交换后：";
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << "  ";
+    }
+
+    return 0;
+}
