@@ -107,6 +107,186 @@ int main()
     {
         cout << arr[i] << "  ";
     }
+	ruturn;
+	}
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    vector<int> arr;
+
+    
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        arr.push_back(x);
+    }
+
+    
+    sort(arr.begin(), arr.end());
+
+    for (int i = 0; i < arr.size(); i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    
+    vector<int> result;
+
+    if (!arr.empty())
+    {
+        result.push_back(arr[0]);
+
+        for (int i = 1; i < arr.size(); i++)
+        {
+            if (arr[i] != arr[i - 1])
+            {
+                result.push_back(arr[i]);
+            }
+        }
+    }
+
+    for (int i = 0; i < result.size(); i++)
+    {
+        cout << result[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+
+}
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    string s;
+    getline(cin, s);
+
+    stringstream ss(s);
+    string word;
+    vector<string> words;
+
+    while (ss >> word)
+    {
+        words.push_back(word);
+    }
+
+    cout << "单词数量：" << words.size() << endl;
+
+    for (int i = words.size() - 1; i >= 0; i--)
+    {
+        cout << words[i] << " ";
+    }
+
+    cout << endl;
+
+    return 0;
+
+}
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student
+{
+private:
+    string name;
+    string id;
+    int* scores;
+    int numScores;
+
+public:
+    
+    Student(string n, string i, int num, int s1, int s2, int s3)
+    {
+        name = n;
+        id = i;
+        numScores = num;
+
+        scores = new int[numScores];
+
+        scores[0] = s1;
+        scores[1] = s2;
+        scores[2] = s3;
+    }
+
+    
+    Student(const Student& other)
+    {
+        name = other.name;
+        id = other.id;
+        numScores = other.numScores;
+
+        scores = new int[numScores];
+
+        for (int i = 0; i < numScores; i++)
+        {
+            scores[i] = other.scores[i];
+        }
+    }
+
+    
+    ~Student()
+    {
+        delete[] scores;
+    }
+
+  
+    void print()
+    {
+        cout << name << " " << id << " ";
+
+        for (int i = 0; i < numScores; i++)
+        {
+            cout << scores[i] << " ";
+        }
+
+        cout << endl;
+    }
+
+    
+    void setScore(int index, int score)
+    {
+        if (index >= 0 && index < numScores)
+        {
+            scores[index] = score;
+        }
+    }
+};
+
+int main()
+{
+    Student stu1("张三", "2025001", 3, 85, 90, 78);
+
+    Student stu2 = stu1;
+
+    cout << "复制前：" << endl;
+    cout << "stu1：";
+    stu1.print();
+
+    cout << "stu2：";
+    stu2.print();
+
+    stu1.setScore(0, 60);
+
+    cout << "\n修改 stu1 第一门成绩后：" << endl;
+    cout << "stu1：";
+    stu1.print();
+
+    cout << "stu2：";
+    stu2.print();
 
     return 0;
 }
